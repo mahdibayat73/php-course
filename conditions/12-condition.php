@@ -1,0 +1,2 @@
+<?php
+// Practice a condition
