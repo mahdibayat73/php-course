@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #F5F5F5;
+    }
+
+    main {
+        width: 400px;
+        height: 200px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 1rem;
+        margin: 100px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background-color: #FFFFFF;
+    }
+    #ajax-send {
+        padding: .3rem 2rem;
+        cursor: pointer;
+        margin: 1rem 0;
+
+    }
+    #input {
+        padding: .5rem 1.5rem;
+    }
+</style>
+
+<body>
+
+    <main>
+        <input type="text" name="name" id="input">
+        <button id="ajax-send">send</button>
+        <div id="ajax-result"></div>
+    </main>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var btn = $("#ajax-send");
+            var resultTag = $("#ajax-result");
+            var input = $("#input");
+            btn.click(function(){
+                $.ajax({
+                    url: "ajax-handler2.php",
+                    method: "POST",
+                    data: {data : input.val()},
+                    success: function(response){
+                        resultTag.text(response);
+                    },
+                    error: function(response) {
+                        resultTag.text(response);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
